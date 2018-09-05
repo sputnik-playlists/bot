@@ -7,20 +7,47 @@ Generate Spotify playlists based on Sputnik Music charts and new releases.
 ## 1.
 
 Create a Spotify app - https://developer.spotify.com
+
+You must also specify a valid Redirect URI in your app settings to:
+
+```
+http://localhost:8080/success
+```
+
 ## 2.
 
 Rename `docker-compose.override.example.yml` to `docker-compose.override.yml`
 and add `CLIENT_ID`, `CLIENT_SECRET` and `CALLBACK` values.
 
-## 3.
-
-Create and follow an authorisation URL:
+eg:
 
 ```
-docker-compose run --rm node node auth.js
+CLIENT_ID=123456789abcdefghijklmnophijklmn
+CLIENT_SECRET=123456789abcdefghijklmnophijklmn
+CALLBACK=http://localhost:8080/success
+```
+
+## 3.
+
+Install dependencies:
+
+```
+docker-compose run --rm node yarn install
 ```
 
 ## 4.
+
+Authorise your app. First, start the auth server.
+
+```
+docker-compose up -d
+```
+
+1. Browse to `http://localhost:8080`, follow the provided link.
+2. Authorise the app
+3. You should be redirected to a success message.
+
+## 5.
 
 Generate a token:
 
@@ -34,13 +61,13 @@ You can regenerate expired tokens:
 docker-compose run --rm node node refresh.js
 ```
 
-## 4.
+## 6.
 
 Configure `playlists.json`. See configuration documentation below.
 
-## 5.
+## 7.
 
-Run the application:
+Run the bot:
 
 ```
 docker-compose run --rm node node app.js
