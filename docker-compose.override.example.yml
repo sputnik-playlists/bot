@@ -1,0 +1,7 @@
+version: "2"
+services:
+  node:
+    environment:
+      - CLIENT_ID=
+      - CLIENT_SECRET=
+      - CALLBACK=

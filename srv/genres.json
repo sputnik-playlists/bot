@@ -1,0 +1,38 @@
+[
+  {
+    "name": "All",
+    "gid": 0
+  },
+  {
+    "name": "Electronic",
+    "gid": 58
+  },
+  {
+    "name": "Hip-Hop",
+    "gid": 4
+  },
+  {
+    "name": "Jazz",
+    "gid": 7
+  },
+  {
+    "name": "Metal",
+    "gid": 1
+  },
+  {
+    "name": "Pop",
+    "gid": 14
+  },
+  {
+    "name": "Punk",
+    "gid": 3
+  },
+  {
+    "name": "Rock",
+    "gid": 30
+  },
+  {
+    "name": "Alternative Rock",
+    "gid": 21
+  }
+]

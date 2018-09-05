@@ -1,0 +1,6 @@
+version: "2"
+services:
+  node:
+    image: "ellioseven/node:9"
+    volumes:
+      - ./srv:/srv
