@@ -111,3 +111,10 @@ specified rating will not be included in the Spotify playlist.
 
 - Playlists will be automatically created if they don't exist
 - Tracks will be removed from playlists if they aren't included in scrape
+- Doesn't look like playlists will be created for free spotify accounts
+
+# Todo
+
+- Implement [string-similarity](https://www.npmjs.com/package/string-similarity)
+  when search matching
+- Add <month> playlist name token for releases
