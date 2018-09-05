@@ -2,5 +2,8 @@ version: "2"
 services:
   node:
     image: "ellioseven/node:9"
+    command: ["yarn", "run", "start"]
+    ports:
+      - 8080:8080
     volumes:
       - ./srv:/srv
