@@ -15,6 +15,7 @@ spotify.setRefreshToken(token)
 spotify.refreshAccessToken()
   .then(data => {
     fs.writeFileSync('.access.token', data.body['access_token'])
+    console.log("Token refreshed")
   })
   .catch(e => {
     console.log(e)

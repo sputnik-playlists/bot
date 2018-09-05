@@ -15,6 +15,7 @@ spotify.authorizationCodeGrant(code)
     fs.writeFileSync('.expire.token', data.body['expires_in'])
     fs.writeFileSync('.access.token', data.body['access_token'])
     fs.writeFileSync('.refresh.token', data.body['refresh_token'])
+    console.log("Token generated")
   })
   .catch(e => {
     console.log(e)
