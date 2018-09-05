@@ -1,3 +1,4 @@
 *.token
 .code
+*.log
 docker-compose.override.yml
