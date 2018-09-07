@@ -1,15 +1,5 @@
-const fs = require("fs")
-const SpotifyNode = require("spotify-web-api-node")
-
-const spotifyBatch = require("./lib/spotify")
+const spotify = require("./lib/spotify")
 const sputnik = require("./lib/sputnik")
-
-// Load token.
-const token = fs.readFileSync(".access.token", "utf8").trim()
-
-// Create Spotify API object.
-const Spotify = new SpotifyNode()
-Spotify.setAccessToken(token)
 
 /**
  * Sync Sputnik releases with user playlist.
@@ -27,7 +17,7 @@ async function release (playlist) {
 
     for (album of albums) {
       // Search Spotify for album tracks.
-      const results = await spotifyBatch.searchAlbumTracks(album)
+      const results = await spotify.searchAlbumTracks(album)
         .then(response => {
           if (response) return response.map(item => item.id)
         })
@@ -39,7 +29,7 @@ async function release (playlist) {
 
     if (tracks.length) {
       // Sync found tracks.
-      await spotifyBatch.syncPlaylist(playlist, tracks)
+      await spotify.syncPlaylist(playlist, tracks)
         .catch(e => console.log(e))
     }
   } catch (e) {
@@ -62,7 +52,7 @@ async function chart (playlist) {
     const albums = await sputnik.chartAlbums(playlist.gid, playlist.pid)
     for (album of albums) {
       // Search Spotify for album tracks.
-      const results = await spotifyBatch.searchAlbumTracks(album)
+      const results = await spotify.searchAlbumTracks(album)
         .then(response => {
           if (response) return response.map(item => item.id)
         })
@@ -73,7 +63,7 @@ async function chart (playlist) {
 
     if (tracks.length) {
       // Sync found tracks.
-      await spotifyBatch.syncPlaylist(playlist, tracks)
+      await spotify.syncPlaylist(playlist, tracks)
         .catch(e => console.log(e))
     }
   } catch (e) {
