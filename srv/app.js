@@ -4,7 +4,6 @@ const sputnik = require("./lib/sputnik")
 /**
  * Sync Sputnik releases with user playlist.
  *
- * @todo Replace for loop with forEach?
  * @todo Add arg docs.
  *
  * @param playlist
@@ -40,7 +39,6 @@ async function release (playlist) {
 /**
  * Sync Sputnik chart with user playlist.
  *
- * @todo Replace for loop with forEach?
  * @todo Add arg docs.
  *
  * @param playlist
