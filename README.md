@@ -119,4 +119,4 @@ specified rating will not be included in the Spotify playlist.
 - Add <month> playlist name token for releases
 - Replace username config with environment variable
 - Email notifications after each playlist sync
-- Synchronously run syncs?
+- Refresh token after each sync?
