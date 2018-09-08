@@ -21,7 +21,7 @@ module.exports = {
           $content.each((i, elem) => {
             const $elem = $(elem)
             const artist = $elem.find("b").text()
-            const album = $elem.find("font").text()
+            const album = $elem.find("font font").text()
             const foundRating = $elem.prev("td").text()
             if (artist && album && foundRating >= rating) {
               albums.push({ artist, album })
