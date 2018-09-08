@@ -115,6 +115,19 @@ const sendReport = results => {
 }
 
 /**
+ * Parse playlist name.
+ *
+ * @param playlist String - Playlist name.
+ */
+const parsePlaylistName = playlist => {
+  const date = new Date()
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  const month = months[date.getMonth()]
+  // Replace `{{ month }}` keyword.
+  return playlist.replace("{{ month }}", month)
+}
+
+/**
  * Entry function.
  */
 async function main () {
@@ -124,6 +137,8 @@ async function main () {
     const playlists = require("./playlists.json")
     for (playlist of playlists) {
       let result;
+      // Parse playlist name.
+      playlist.name = parsePlaylistName(playlist.name)
       switch (playlist.type) {
         // Process Sputnik chart.
         case "chart":

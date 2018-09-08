@@ -134,6 +134,5 @@ Configure the following in `config.json`:
 
 # Todo
 
-- Add <month> playlist name token for releases
 - Replace username config with environment variable
 - Refresh token after each sync?
