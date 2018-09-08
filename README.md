@@ -75,11 +75,13 @@ docker-compose run --rm node node app.js
 
 # Playlist Configuration
 
-Playlists are structered within an array of playlist objects.
+Playlists are structered within an array of playlist objects. See
+`playlists.json` for an example.
 
 ## `name`
 
-Name of the playlist. Simples.
+Name of the playlist. Simples. Supports a `{{ month }}` token to get the
+current month.
 
 ## `user`
 
@@ -134,6 +136,7 @@ Configure the following in `config.json`:
 
 ## Genre ID's
 
+```
 21 - Alternative Rock
 58 - Electronic
 4 - Hip-Hop
@@ -209,6 +212,7 @@ Configure the following in `config.json`:
 39 - Thrash Metal
 68 - Trance
 60 - Trip Hop
+```
 
 # Todo
 
