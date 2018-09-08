@@ -1,12 +1,14 @@
 const spotify = require("./lib/spotify")
 const sputnik = require("./lib/sputnik")
+const mailgun = require("./lib/mailgun")
 
 /**
  * Sync Sputnik releases with user playlist.
  *
  * @todo Add arg docs.
  *
- * @param playlist
+ * @param playlist Object - Playlist definition.
+ * @return Object - Results object.
  */
 async function release (playlist) {
   try {
@@ -39,8 +41,8 @@ async function release (playlist) {
     const results = await spotify.syncPlaylist(playlist, tracks)
       .catch(e => console.log(e))
 
-    // Display success ratio, removed and added.
-    // console.log(ratio, results)
+    // Return results object,
+    return { ratio, ...results }
   } catch (e) {
     throw e
   }
@@ -51,7 +53,8 @@ async function release (playlist) {
  *
  * @todo Add arg docs.
  *
- * @param playlist
+ * @param playlist Object - Playlist definition.
+ * @return Object - Results object.
  */
 async function chart (playlist) {
   try {
@@ -82,32 +85,59 @@ async function chart (playlist) {
     const results = await spotify.syncPlaylist(playlist, tracks)
       .catch(e => console.log(e))
 
-    // Display success ratio, removed and added.
-    // console.log(ratio, results)
+    // Return results object,
+    return { ratio, ...results }
   } catch (e) {
     throw e
   }
 }
 
 /**
+ * Send report mail.
+ *
+ * Mail will only be sent if configured and enabled.
+ *
+ * @param results Array - Playlist definitions & results.
+ */
+const sendReport = results => {
+  let message = "<h1>Playlists Report</h1>"
+
+  results.forEach(result => {
+    message += `<p><strong>${result.playlist.name}</strong></p>`
+    message += `<ul>`
+    message += `<li>Success Ratio: ${result.result.ratio}%</li>`
+    message += `<li>Added: ${result.result.added}</li>`
+    message += `<li>Removed: ${result.result.remove}</li>`
+    message += `</ul>`
+  })
+
+  mailgun.send(message)
+}
+
+/**
  * Entry function.
  */
 async function main () {
+  let results = []
   try {
     // Load playlists.
     const playlists = require("./playlists.json")
     for (playlist of playlists) {
+      let result;
       switch (playlist.type) {
         // Process Sputnik chart.
         case "chart":
-          await chart(playlist)
+          result = await chart(playlist)
+          results.push({ playlist, result })
           break;
         // Process Sputnik release.
         case "release":
-          await release(playlist)
+          result = await release(playlist)
+          results.push({ playlist, result })
           break;
       }
     }
+    sendReport(results)
   } catch (e) {
     throw e
   }

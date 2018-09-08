@@ -2,3 +2,4 @@
 .code
 *.log
 docker-compose.override.yml
+config.local.json

@@ -1,0 +1,10 @@
+{
+  "mail": {
+    "enable": true,
+    "apiKey": "<api-key>",
+    "domain": "<domain>",
+    "from": "<from>",
+    "to": "<to>",
+    "subject": "<to>"
+  }
+}

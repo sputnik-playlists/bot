@@ -107,6 +107,26 @@ collection.
 Optionally specify a rating for album selection. An album that is lower than the
 specified rating will not be included in the Spotify playlist.
 
+## Mailgun Support
+
+You can send reports via [Mailgun](https://www.mailgun.com) after the
+bot has run.
+
+Configure the following in `config.json`:
+
+```
+{
+  "mail": {
+    "enable": true,
+    "apiKey": "<api-key>",
+    "domain": "<domain>",
+    "from": "<from>",
+    "to": "<to>",
+    "subject": "<to>"
+  }
+}
+```
+
 # Notes
 
 - Playlists will be automatically created if they don't exist
@@ -116,5 +136,4 @@ specified rating will not be included in the Spotify playlist.
 
 - Add <month> playlist name token for releases
 - Replace username config with environment variable
-- Email notifications after each playlist sync
 - Refresh token after each sync?
