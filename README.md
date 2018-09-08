@@ -114,8 +114,6 @@ specified rating will not be included in the Spotify playlist.
 
 # Todo
 
-- Implement [string-similarity](https://www.npmjs.com/package/string-similarity)
-  when search matching
 - Add <month> playlist name token for releases
 - Replace username config with environment variable
 - Email notifications after each playlist sync
