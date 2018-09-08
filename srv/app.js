@@ -10,6 +10,7 @@ const sputnik = require("./lib/sputnik")
  */
 async function release (playlist) {
   try {
+    let hit = 0
     let tracks = []
     // Hunt Sputnik for release albums.
     const albums = await sputnik.releaseAlbums(playlist.gid, playlist.rating)
@@ -18,13 +19,21 @@ async function release (playlist) {
       // Search Spotify for album tracks.
       const results = await spotify.searchAlbumTracks(album)
         .then(response => {
-          if (response) return response.map(item => item.id)
+          if (response) {
+            if (response.length) hit++
+            return response.map(item => item.id)
+          }
         })
         .catch(e => console.log(e))
 
       // Append matched tracks.
       if (results && results.length) tracks = tracks.concat(results)
     }
+
+    // Album success ratio.
+    const ratio = Math.round(
+      (hit / albums.length) * 100)
+    // console.log(ratio)
 
     if (tracks.length) {
       // Sync found tracks.
@@ -45,6 +54,7 @@ async function release (playlist) {
  */
 async function chart (playlist) {
   try {
+    let hit = 0
     let tracks = []
     // Hunt Sputnik for chart albums.
     const albums = await sputnik.chartAlbums(playlist.gid, playlist.pid)
@@ -52,12 +62,20 @@ async function chart (playlist) {
       // Search Spotify for album tracks.
       const results = await spotify.searchAlbumTracks(album)
         .then(response => {
-          if (response) return response.map(item => item.id)
+          if (response) {
+            if (response.length) hit++
+            return response.map(item => item.id)
+          }
         })
         .catch(e => console.log(e))
       // Append matched tracks.
       if (results && results.length) tracks = tracks.concat(results)
     }
+
+    // Album success ratio.
+    const ratio = Math.round(
+      (hit / albums.length) * 100)
+    // console.log(ratio)
 
     if (tracks.length) {
       // Sync found tracks.
