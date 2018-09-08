@@ -1,4 +1,5 @@
 const fs = require("fs")
+const similarity = require("string-similarity")
 const Spotify = require("spotify-web-api-node")
 
 /**
@@ -226,6 +227,11 @@ async function syncPlaylist (playlist, tracks) {
  */
 async function searchAlbumTracks (album) {
   const spotify = createSpotify()
+  // Set comparison threshold.
+  // @url https://www.npmjs.com/package/string-similarity
+  const threshold = 0.75
+  const compare = (a, b) =>
+    similarity.compareTwoStrings(a, b) > threshold
   try {
     const query = `album:${album.album} artist:${album.artist}`
     return await spotify.searchTracks(query)
@@ -236,11 +242,9 @@ async function searchAlbumTracks (album) {
           tracks = response.body.tracks.items.filter(track => {
             // Basic artist matching algorithm.
             const matchArtist = track.artists.some(artist =>
-              artist.name.toLowerCase()
-                .includes(album.artist.toLowerCase()))
-            // Basic album matching algorithm
-            const matchAlbum = track.album.name.toLowerCase()
-              .includes(album.album.toLowerCase())
+              compare(artist.name, album.artist))
+            // Basic album matching algorithm.
+            const matchAlbum = compare(track.album.name, album.album)
             return matchArtist && matchAlbum
           })
         }
