@@ -107,7 +107,7 @@ const sendReport = results => {
     message += `<ul>`
     message += `<li>Success Ratio: ${result.result.ratio}%</li>`
     message += `<li>Added: ${result.result.added}</li>`
-    message += `<li>Removed: ${result.result.remove}</li>`
+    message += `<li>Removed: ${result.result.removed}</li>`
     message += `</ul>`
   })
 
