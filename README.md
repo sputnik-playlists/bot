@@ -132,6 +132,84 @@ Configure the following in `config.json`:
 - Playlists will be automatically created if they don't exist
 - Tracks will be removed from playlists if they aren't included in scrape
 
+## Genre ID's
+
+21 - Alternative Rock
+58 - Electronic
+4 - Hip-Hop
+7 - Jazz
+1 - Metal
+14 - Pop
+3 - Punk
+30 - Rock
+33 - Ambient
+29 - Americana
+47 - Black Metal
+24 - Bluegrass
+20 - Blues
+96 - Breaks
+31 - Britpop
+17 - Classical
+25 - Country
+11 - Death Metal
+34 - Doom Metal
+63 - Downtempo
+36 - Dream Pop
+37 - Drone
+32 - Drum and Bass
+5 - Dubstep
+16 - Emo
+43 - Experimental
+10 - Folk
+41 - Folk Punk
+8 - Funk
+64 - Garage
+86 - Gothic
+48 - Grime
+61 - Grind
+22 - Grunge
+95 - Hard Rock
+55 - Hardcore
+82 - Heavy Metal
+62 - House
+74 - IDM
+42 - Indie Folk
+2 - Indie Pop
+49 - Indie Rock
+56 - Industrial
+19 - Jam Rock
+97 - Jazz Fusion
+27 - Lo-fi
+93 - Math Rock
+173 - Melodic Death Metal
+26 - Metalcore
+13 - Minimal
+181 - New Age
+98 - Noise Rock
+28 - Nu-metal
+12 - Pop Punk
+54 - Pop Rock
+59 - Post Hardcore
+38 - Post Metal
+52 - Post Punk
+6 - Post Rock
+40 - Power Metal
+15 - Progressive Metal
+23 - Progressive Rock
+18 - Psychedelic
+84 - R&B
+51 - Reggae
+35 - Shoegaze
+57 - Ska
+66 - Sludge Metal
+53 - Soul
+50 - Soundtrack
+65 - Stoner Rock
+67 - Techno
+39 - Thrash Metal
+68 - Trance
+60 - Trip Hop
+
 # Todo
 
 - Replace username config with environment variable
