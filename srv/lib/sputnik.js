@@ -14,13 +14,14 @@ module.exports = {
         .then(response => {
           let albums = []
           const $ = cherio.load(response.data)
-          const $rows = $("table.plaincontentbox > tbody > tr > td > table")
-          const $title = $rows.eq(0).find("td").eq(0)
+          const $rows = $("table.plaincontentbox > tbody > tr > td > table > tbody > tr")
+          // @todo Use this later for playlist name token replacement.
+          const $title = $rows.eq(0).find("> td:first-child font").text()
           const $content = $rows.eq(1).find("table > tbody > tr > td")
           $content.each((i, elem) => {
             const $elem = $(elem)
             const artist = $elem.find("b").text()
-            const album = $elem.find("font font").text()
+            const album = $elem.find("font").text()
             const foundRating = $elem.prev("td").text()
             if (artist && album && foundRating >= rating) {
               albums.push({ artist, album })
