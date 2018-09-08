@@ -152,9 +152,13 @@ async function searchUserPlaylists (uid, name) {
  *
  * @param playlist Object - Playlist object.
  * @param tracks Array - Track objects.
+ * @return Object - Results object.
  */
 async function syncPlaylist (playlist, tracks) {
   try {
+    const results = { added: 0, removed: 0 }
+    // Exit early on empty tracks.
+    if (!tracks.length) return results
     const spotify = createSpotify()
     const uid = playlist.user
     const name = playlist.name
@@ -186,6 +190,7 @@ async function syncPlaylist (playlist, tracks) {
       const remove = playlistTracks.reduce((items, item) => {
         const index = tracks.indexOf(item)
         if (index < 0) {
+          results.removed = results.removed + 1
           tracks.splice(index, 1)
           items.push({ uri: `spotify:track:${item}` })
         }
@@ -204,7 +209,10 @@ async function syncPlaylist (playlist, tracks) {
       // tracks aren't added.
       const add = tracks.reduce((items, item) => {
         const index = playlistTracks.indexOf(item)
-        if (index < 0) items.push(`spotify:track:${item}`)
+        if (index < 0) {
+          results.added = results.added + 1
+          items.push(`spotify:track:${item}`)
+        }
         return items
       }, [])
 
@@ -214,6 +222,8 @@ async function syncPlaylist (playlist, tracks) {
           .catch(e => console.log(e))
       }
     }
+
+    return results
   } catch (e) {
     throw e
   }

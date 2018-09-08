@@ -35,11 +35,12 @@ async function release (playlist) {
       (hit / albums.length) * 100)
     // console.log(ratio)
 
-    if (tracks.length) {
-      // Sync found tracks.
-      await spotify.syncPlaylist(playlist, tracks)
-        .catch(e => console.log(e))
-    }
+    // Sync found tracks.
+    const results = await spotify.syncPlaylist(playlist, tracks)
+      .catch(e => console.log(e))
+
+    // Display success ratio, removed and added.
+    // console.log(ratio, results)
   } catch (e) {
     throw e
   }
@@ -77,11 +78,12 @@ async function chart (playlist) {
       (hit / albums.length) * 100)
     // console.log(ratio)
 
-    if (tracks.length) {
-      // Sync found tracks.
-      await spotify.syncPlaylist(playlist, tracks)
-        .catch(e => console.log(e))
-    }
+    // Sync found tracks.
+    const results = await spotify.syncPlaylist(playlist, tracks)
+      .catch(e => console.log(e))
+
+    // Display success ratio, removed and added.
+    // console.log(ratio, results)
   } catch (e) {
     throw e
   }
